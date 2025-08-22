@@ -1,1 +1,1 @@
-# Mnisi-project
+# Mnist-project
