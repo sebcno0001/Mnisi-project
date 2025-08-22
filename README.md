@@ -1,21 +1,35 @@
-# MNIST Project  
+# Projekt klasyfikacji obrazów – Dice & EMNIST  
 
-Projekt przedstawia implementację klasyfikatora obrazów ręcznie pisanych cyfr ze zbioru **MNIST** z użyciem **PyTorch**.  
+Projekt obejmuje trzy etapy pracy z obrazami zapisanymi w plikach CSV, przy użyciu narzędzi **Python** i **PyTorch**. Dane obejmują zarówno obrazy kostek do gry (`dice_ext.csv`), jak i litery (`emnist_letters.csv`).  
+Ze względu na rozmiar plików dane nie są przechowywane w repozytorium.  
 
-## Opis projektu  
-Celem projektu było zbudowanie i wytrenowanie sieci neuronowej, która potrafi rozpoznawać cyfry (0–9) zapisane odręcznie.  
-Proces został podzielony na etapy:  
-1. Wczytanie danych i ich wstępna analiza.  
-2. Przygotowanie datasetów: łączenie, podział na zbiór treningowy i testowy.  
-3. Budowa modelu – definicja warstw sieci neuronowej.  
-4. Trening – dobór funkcji straty i optymalizatora.  
-5. Ewaluacja – testowanie poprawności predykcji na danych testowych.  
-6. Wizualizacja wyników – przykłady poprawnych/niepoprawnych klasyfikacji oraz wykres funkcji straty.  
-7. Zapis najlepszego modelu.  
+## Etap 1 – kontrola danych  
+Sprawdzenie poprawności zbioru danych `dice_ext.csv`:  
+- weryfikacja dostępności danych,  
+- sprawdzenie liczby próbek i ich zgodności z opisem,  
+- wizualizacja przykładowego obrazu.  
+
+## Etap 2 – klasyfikacja według liczby oczek  
+Celem etapu jest zbudowanie modelu klasyfikującego obrazy kostek (`dice_ext.csv`):  
+- jeżeli kostka jest niepoprawna – model rozpoznaje ten fakt,  
+- jeżeli kostka jest poprawna – model rozpoznaje liczbę oczek (od 1 do 6).  
+
+Możliwe podejścia:  
+- jeden model klasyfikujący,  
+- dwa modele połączone (ensemble),  
+- jeden model wsparty dodatkowym kodem.  
+
+## Etap 3 – klasyfikacja do domeny  
+Budowany jest model rozróżniający domenę obrazu. Wykorzystywane są dwa zbiory:  
+- `dice_ext.csv` (kostki – poprawne i niepoprawne),  
+- `emnist_letters.csv` (litery).  
+
+Model klasyfikuje każdy obraz do jednej z domen.  
+Miara jakości: **dokładność (accuracy)**.  
 
 ## Wymagania  
 Projekt powstał w Pythonie 3.  
-Niezbędne biblioteki:  
+Wymagane biblioteki:  
 ```bash
 pip install torch torchvision pandas numpy matplotlib
 ```
@@ -23,30 +37,20 @@ pip install torch torchvision pandas numpy matplotlib
 ## Uruchomienie  
 1. Sklonuj repozytorium:  
    ```bash
-   git clone https://github.com/twoj-login/mnist-project.git
-   cd mnist-project
+   git clone https://github.com/twoj-login/dice-emnist-classification.git
+   cd dice-emnist-classification
    ```
 2. Uruchom notebook Jupyter:  
    ```bash
-   jupyter notebook "Mnist project.ipynb"
-   ```
-
-## Wyniki  
-- Model osiąga wysoką dokładność na zbiorze testowym.  
-- W notebooku znajdują się przykładowe predykcje wraz z wizualizacją.  
-- Dodano wykres strat, aby zobaczyć proces uczenia.  
+   jupyter notebook "Projekt.ipynb"
+   ```  
 
 ## Struktura projektu  
 ```
-mnist-project/
-│── Mnist project.ipynb   # Notebook z implementacją
-│── README.md             # Dokumentacja
+dice-emnist-classification/
+│── Projekt.ipynb          # Notebook z implementacją
+│── README.md              # Dokumentacja
 ```
 
-## Przykłady wyników  
-W notebooku znajdują się:  
-- Obrazy testowe z zaznaczoną poprawnością predykcji.  
-- Wykresy strat w kolejnych epokach.  
-
 ## Autor  
-Projekt wykonany w ramach nauki głębokiego uczenia z wykorzystaniem PyTorch.  
+Projekt wykonany w ramach kursu z zakresu uczenia maszynowego i sieci neuronowych.  
