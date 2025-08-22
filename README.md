@@ -6,18 +6,12 @@ Ze względu na rozmiar plików dane nie są przechowywane w repozytorium.
 ## Etap 1 – kontrola danych  
 Sprawdzenie poprawności zbioru danych `dice_ext.csv`:  
 - weryfikacja dostępności danych,  
-- sprawdzenie liczby próbek i ich zgodności z opisem,  
 - wizualizacja przykładowego obrazu.  
 
 ## Etap 2 – klasyfikacja według liczby oczek  
 Celem etapu jest zbudowanie modelu klasyfikującego obrazy kostek (`dice_ext.csv`):  
 - jeżeli kostka jest niepoprawna – model rozpoznaje ten fakt,  
 - jeżeli kostka jest poprawna – model rozpoznaje liczbę oczek (od 1 do 6).  
-
-Możliwe podejścia:  
-- jeden model klasyfikujący,  
-- dwa modele połączone (ensemble),  
-- jeden model wsparty dodatkowym kodem.  
 
 ## Etap 3 – klasyfikacja do domeny  
 Budowany jest model rozróżniający domenę obrazu. Wykorzystywane są dwa zbiory:  
